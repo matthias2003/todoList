@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg bg-light">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">My List</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Shopping list</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="#" aria-current="page">Todo</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+  <div class="container list-wrapper">
+    <h1>Todo list</h1>
+    <div class="row">
+      <div class="col-md-4">
+        <form id="todoForm">
+          <div class="form-floating mt-3 mb-3">
+            <input type="text" class="form-control" id="todoName" placeholder="Dodaj zadanie" name="todoName">
+            <label for="shoppingItem">Dodaj zadanie</label>
+            <span class="input-info-danger" id="todoNameError"></span>
+          </div>
+          <div class="form-floating mt-12 mb-3 ">
+            <textarea class="form-control" id="todoDesc" placeholder="Opis" name="todoDesc"
+              style="height: 200px"></textarea>
+            <label for="shoppingItem">Opis</label>
+            <span class="input-info-danger" id="todoDescError"></span>
+          </div>
+          <button class="btn btn-success mb-3 d-block mt-2" type="submit">DODAJ</button>
+        </form>
+      </div>
+      <div class="col-md-8">
+        <ul class="list-group" id="todoList">
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+    crossorigin="anonymous"></script>
+  <script src="todo.js"></script>
+</body>
+
+</html>
