@@ -1,0 +1,17 @@
+.list-wrapper {
+    margin-top:50px;
+}
+
+.input-danger {
+    border: 1px solid red;
+    color:red;
+}
+
+.input-info-danger {
+    color: red;
+    font-size: 12px;
+}
+
+textarea {
+    resize: none;
+}
