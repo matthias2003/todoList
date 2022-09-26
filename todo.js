@@ -91,9 +91,15 @@ const renderList = () => {
         let heading = document.createElement('h5');
         let paragraph = document.createElement('p');
         let button = document.createElement('button');
+        let buttonsWrapper = document.createElement('div');
+        let buttonDel = document.createElement('button');
 
         button.addEventListener('click', changeTaskStatus);
         button.dataset.taskId = index;
+
+        buttonDel.addEventListener('click', deleteTask);
+        buttonDel.dataset.taskId = index;  // nad tym pracujemy
+            
  
         if (!todo.done) {
             button.innerText = "Finish";
@@ -102,17 +108,22 @@ const renderList = () => {
             button.innerText = "Revert";
             button.classList.add('btn','btn-danger','btn-sm')
             main.style.textDecoration = "line-through";
+            li.style.backgroundColor = "#E8E8E8"; // -> do poprawaki, kolory zmieniń, na razie tylko zamysł 
         }
 
         heading.innerText = todo.name;
         paragraph.innerText = todo.desc;
+        buttonDel.innerText = "Usuń";
 
         main.appendChild(heading);
         main.appendChild(paragraph);
 
+        buttonsWrapper.appendChild(button);
+        buttonsWrapper.appendChild(buttonDel);
 
         li.appendChild(main);
-        li.appendChild(button);
+        li.appendChild(buttonsWrapper)
+        li.dataset.taskId = index;
 
         ul.appendChild(li);
     })
@@ -128,6 +139,13 @@ const changeTaskStatus = (event) => {
     }
     renderList();
     localStorage.setItem('todoList', JSON.stringify(todoList));
+}
+
+const deleteTask = (event) => {
+    todoList.splice(event.target.dataset.taskId,1);
+    localStorage.setItem('todoList', JSON.stringify(todoList));
+    let todo = document.querySelector(`[data-set-index]="${event.target.dataset.taskId}"`) // ogarnać jak usunąć całe li, localStorage usuwa się, todoList też się usuwa
+    console.log(todo)
 }
 
 const getTodoList = () => {

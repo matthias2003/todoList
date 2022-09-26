@@ -15,3 +15,11 @@
 textarea {
     resize: none;
 }
+
+.underline-div {
+    width: 500px;
+    height: 2px;
+    background-color: #AEBDCA;
+    margin: auto;
+    /*box-shadow: 0 2px 2px 2px gray;*/
+}
