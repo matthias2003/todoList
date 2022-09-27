@@ -25,7 +25,7 @@ textarea {
 
 .buttons-wrapper {
     display: flex;
-    gap:5px;
+    margin-right: 10px;
 }
 
 .delete-icon {
@@ -34,4 +34,9 @@ textarea {
 .btn-color {
    background-color:  #E8DFCA;
    border: none;
+}
+
+
+li {
+    margin-top: 25px;
 }

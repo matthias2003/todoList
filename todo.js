@@ -80,7 +80,7 @@ const renderList = () => {
 
     todoList.forEach((todo, index) => { 
         let li = document.createElement('li');
-        li.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-start');
+        li.classList.add('list-group-item', 'd-flex','align-items-start','align-items-center');
 
         let main = document.createElement('div');
         let heading = document.createElement('h5');
@@ -92,12 +92,14 @@ const renderList = () => {
         button.addEventListener('click', changeTaskStatus);
         button.dataset.taskId = index;
 
+
         buttonDel.addEventListener('click', deleteTask);
         buttonDel.dataset.taskId = index; 
         buttonDel.classList.add('btn','btn-success','btn-sm','btn-color');
-        let icon  = document.createElement('i');
-        icon.classList.add('fa-solid','fa-trash','delete-icon');
-        buttonDel.appendChild(icon);
+        buttonDel.innerText = "Kółko";
+       // let icon  = document.createElement('i');
+       // icon.classList.add('fa-solid','fa-trash','delete-icon');
+       // buttonDel.appendChild(icon);   // -> button dell i ikona
             
  
         if (!todo.done) {
@@ -111,17 +113,19 @@ const renderList = () => {
         }
 
         heading.innerText = todo.name;
-        paragraph.innerText = todo.desc;
+        //paragraph.innerText = todo.desc;
 
+        main.classList.add('d-flex');
         main.appendChild(heading);
-        main.appendChild(paragraph);
+        //main.appendChild(paragraph);
 
         buttonsWrapper.classList.add('buttons-wrapper');
-        buttonsWrapper.appendChild(button);
-        buttonsWrapper.appendChild(buttonDel);
+        // buttonsWrapper.appendChild(button);
+        buttonsWrapper.appendChild(buttonDel);    // -> dwa buttony append 
+    
 
-        li.appendChild(main);
         li.appendChild(buttonsWrapper)
+        li.appendChild(main);
         li.dataset.taskId = index;
 
         ul.appendChild(li);
