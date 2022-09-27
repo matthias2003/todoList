@@ -1,5 +1,9 @@
+body {
+    background-color: #f9faff ;
+}
+
 .list-wrapper {
-    margin-top:50px;
+    margin-top:25px;
 }
 
 .input-danger {
@@ -31,12 +35,16 @@ textarea {
 .delete-icon {
     color: #7895B2;
 }
+
 .btn-color {
-   background-color:  #E8DFCA;
    border: none;
 }
 
+.li-custom {
+    margin-top: 10px;
+    border-radius: 15px !important;
+}
 
-li {
-    margin-top: 25px;
+i {
+    display: block;
 }
