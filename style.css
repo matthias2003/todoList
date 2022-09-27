@@ -17,9 +17,21 @@ textarea {
 }
 
 .underline-div {
-    width: 500px;
+    width: 25vw;
     height: 2px;
     background-color: #AEBDCA;
     margin: auto;
-    /*box-shadow: 0 2px 2px 2px gray;*/
+}
+
+.buttons-wrapper {
+    display: flex;
+    gap:5px;
+}
+
+.delete-icon {
+    color: #7895B2;
+}
+.btn-color {
+   background-color:  #E8DFCA;
+   border: none;
 }

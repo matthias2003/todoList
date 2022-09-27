@@ -4,9 +4,6 @@ let ul;
 let todoForm;
 let todoList;
 
-
-
-
 document.addEventListener('DOMContentLoaded', () => {
     ul = document.getElementById('todoList');
     todoForm = document.getElementById('todoForm');
@@ -53,8 +50,6 @@ document.addEventListener('DOMContentLoaded', () => {
          
             renderList();
            
-           
-
         } else {
 
             if (todoName.value.length < 3) {
@@ -98,12 +93,16 @@ const renderList = () => {
         button.dataset.taskId = index;
 
         buttonDel.addEventListener('click', deleteTask);
-        buttonDel.dataset.taskId = index;  // nad tym pracujemy
+        buttonDel.dataset.taskId = index; 
+        buttonDel.classList.add('btn','btn-success','btn-sm','btn-color');
+        let icon  = document.createElement('i');
+        icon.classList.add('fa-solid','fa-trash','delete-icon');
+        buttonDel.appendChild(icon);
             
  
         if (!todo.done) {
-            button.innerText = "Finish";
-            button.classList.add('btn','btn-success','btn-sm')
+           button.innerText = "Finish";
+           button.classList.add('btn','btn-success','btn-sm');
         } else {
             button.innerText = "Revert";
             button.classList.add('btn','btn-danger','btn-sm')
@@ -113,11 +112,11 @@ const renderList = () => {
 
         heading.innerText = todo.name;
         paragraph.innerText = todo.desc;
-        buttonDel.innerText = "Usuń";
 
         main.appendChild(heading);
         main.appendChild(paragraph);
 
+        buttonsWrapper.classList.add('buttons-wrapper');
         buttonsWrapper.appendChild(button);
         buttonsWrapper.appendChild(buttonDel);
 
@@ -142,11 +141,9 @@ const changeTaskStatus = (event) => {
 }
 
 const deleteTask = (event) => {
-    todoList.splice(event.target.dataset.taskId,1);
-    localStorage.setItem('todoList', JSON.stringify(todoList));
-    let todo = document.querySelector(`[data-task-id="${event.target.dataset.taskId}"]`);
-    todo.remove();
-    console.log(todo)
+    //todoList.splice(event.target.dataset.taskId,1);
+   // localStorage.setItem('todoList', JSON.stringify(todoList)); // -> do włączenia usuwanie, wyłaczone do testów
+    //document.querySelector(`[data-task-id="${event.target.dataset.taskId}"]`).remove();
 }
 
 const getTodoList = () => {
