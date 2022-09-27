@@ -144,7 +144,8 @@ const changeTaskStatus = (event) => {
 const deleteTask = (event) => {
     todoList.splice(event.target.dataset.taskId,1);
     localStorage.setItem('todoList', JSON.stringify(todoList));
-    let todo = document.querySelector(`[data-set-index]="${event.target.dataset.taskId}"`) // ogarnać jak usunąć całe li, localStorage usuwa się, todoList też się usuwa
+    let todo = document.querySelector(`[data-task-id="${event.target.dataset.taskId}"]`);
+    todo.remove();
     console.log(todo)
 }
 
