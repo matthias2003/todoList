@@ -4,9 +4,6 @@ let ul;
 let todoForm;
 let todoList;
 
-
-
-
 document.addEventListener('DOMContentLoaded', () => {
     ul = document.getElementById('todoList');
     todoForm = document.getElementById('todoForm');
@@ -53,8 +50,6 @@ document.addEventListener('DOMContentLoaded', () => {
          
             renderList();
            
-           
-
         } else {
 
             if (todoName.value.length < 3) {
@@ -91,17 +86,28 @@ const renderList = () => {
         let heading = document.createElement('h5');
         let paragraph = document.createElement('p');
         let button = document.createElement('button');
+        let buttonsWrapper = document.createElement('div');
+        let buttonDel = document.createElement('button');
 
         button.addEventListener('click', changeTaskStatus);
         button.dataset.taskId = index;
+
+        buttonDel.addEventListener('click', deleteTask);
+        buttonDel.dataset.taskId = index; 
+        buttonDel.classList.add('btn','btn-success','btn-sm','btn-color');
+        let icon  = document.createElement('i');
+        icon.classList.add('fa-solid','fa-trash','delete-icon');
+        buttonDel.appendChild(icon);
+            
  
         if (!todo.done) {
-            button.innerText = "Finish";
-            button.classList.add('btn','btn-success','btn-sm')
+           button.innerText = "Finish";
+           button.classList.add('btn','btn-success','btn-sm');
         } else {
             button.innerText = "Revert";
             button.classList.add('btn','btn-danger','btn-sm')
             main.style.textDecoration = "line-through";
+            li.style.backgroundColor = "#E8E8E8"; // -> do poprawaki, kolory zmieniń, na razie tylko zamysł 
         }
 
         heading.innerText = todo.name;
@@ -110,9 +116,13 @@ const renderList = () => {
         main.appendChild(heading);
         main.appendChild(paragraph);
 
+        buttonsWrapper.classList.add('buttons-wrapper');
+        buttonsWrapper.appendChild(button);
+        buttonsWrapper.appendChild(buttonDel);
 
         li.appendChild(main);
-        li.appendChild(button);
+        li.appendChild(buttonsWrapper)
+        li.dataset.taskId = index;
 
         ul.appendChild(li);
     })
@@ -128,6 +138,12 @@ const changeTaskStatus = (event) => {
     }
     renderList();
     localStorage.setItem('todoList', JSON.stringify(todoList));
+}
+
+const deleteTask = (event) => {
+    //todoList.splice(event.target.dataset.taskId,1);
+   // localStorage.setItem('todoList', JSON.stringify(todoList)); // -> do włączenia usuwanie, wyłaczone do testów
+    //document.querySelector(`[data-task-id="${event.target.dataset.taskId}"]`).remove();
 }
 
 const getTodoList = () => {
