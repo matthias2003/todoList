@@ -1,5 +1,6 @@
 body {
     background-color: #f9faff ;
+    font-family: 'lato', 'sans-serif';
 }
 
 .list-wrapper {
@@ -28,12 +29,7 @@ textarea {
 }
 
 .buttons-wrapper {
-    display: flex;
     margin-right: 10px;
-}
-
-.delete-icon {
-    color: #7895B2;
 }
 
 .btn-color {
@@ -46,5 +42,13 @@ textarea {
 }
 
 i {
-    display: block;
+    font-size: 30px;
+}
+
+h1,h5 {
+    font-weight: 700;
+}
+
+.flex-override {
+    flex: auto;
 }

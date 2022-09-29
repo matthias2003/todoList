@@ -73,8 +73,8 @@ const renderList = () => {
     let liList = Array.from(ul.getElementsByTagName('li'));
 
     liList.forEach((li) => {
-        let button = li.getElementsByTagName('button')[0];
-        button.removeEventListener('click',changeTaskStatus)
+        let icon = li.getElementsByTagName('i')[0];
+        icon.removeEventListener('click',changeTaskStatus)
     })
     ul.innerHTML ="";
 
@@ -86,38 +86,31 @@ const renderList = () => {
         let main = document.createElement('div');
         let heading = document.createElement('h5');
         //let paragraph = document.createElement('p');
-        let button = document.createElement('button');
-        let buttonsWrapper = document.createElement('div');
+        let buttonWrap = document.createElement('div');
         let buttonDel = document.createElement('button');
-
-        button.addEventListener('click', changeTaskStatus);
-        button.dataset.taskId = index;
-
-
-        //buttonDel.addEventListener('click', deleteTask);
-        buttonDel.dataset.taskId = index; 
-        buttonDel.classList.add('btn','btn-success','btn-sm','border-0');
-        
-       // let icon  = document.createElement('i');
-       // icon.classList.add('fa-solid','fa-trash','delete-icon');
-       // buttonDel.appendChild(icon);   // -> button dell i ikona
-            
- 
         let icon = document.createElement('i');
-        icon.dataset.taskId = index;   // to trzeba zmienić jakoś
+        let iconDel = document.createElement('i');
+        let deleteWrapp = document.createElement('div');
 
+        li.appendChild(deleteWrapp);
+
+        icon.addEventListener('click', changeTaskStatus);
+        icon.dataset.taskId = index;
+
+        iconDel.dataset.taskId = index;
+        iconDel.addEventListener('click', deleteTask);
+        iconDel.classList.add('fa-solid','fa-trash');
+
+
+        
+            
         if (!todo.done) {
             icon.classList.add('fa-regular','fa-circle');
-            
-            button.appendChild(icon);   // -> do sprzątania to całe jest jak nic
-            button.classList.add('btn','btn-success','btn-sm');
-        
+            iconDel.classList.add('d-none');
         } else {
-            icon.classList.add('fa-regular','fa-circle-check');
-            button.appendChild(icon);
-            button.classList.add('btn','btn-danger','btn-sm')
+            icon.classList.add('fa-solid','fa-circle-check');
             main.style.textDecoration = "line-through";
-            li.style.backgroundColor = "#E8E8E8"; // -> do poprawaki, kolory zmieniń, na razie tylko zamysł 
+            iconDel.classList.add('d-block');
         }
 
 
@@ -125,17 +118,22 @@ const renderList = () => {
         heading.classList.add('m-0')
         //paragraph.innerText = todo.desc;
 
-        main.classList.add('d-flex');
+        main.classList.add('p-2','flex-override');
         main.appendChild(heading);
         //main.appendChild(paragraph);
 
-        buttonsWrapper.classList.add('buttons-wrapper');
-        buttonsWrapper.appendChild(button);
-        //buttonsWrapper.appendChild(buttonDel);    // -> dwa buttony append 
+        buttonWrap.classList.add('buttons-wrapper','p-2');
+
+        buttonWrap.appendChild(icon);
+
+        deleteWrapp.classList.add('ml-auto','p-2');
+        
+        deleteWrapp.appendChild(iconDel);
     
-    
-        li.appendChild(buttonsWrapper)
+        li.appendChild(buttonWrap)
         li.appendChild(main);
+        li.appendChild(deleteWrapp);
+
         li.dataset.taskId = index;
 
         ul.appendChild(li);
