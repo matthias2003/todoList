@@ -84,7 +84,8 @@ const renderList = () => {
 
         
         let main = document.createElement('div');
-        let heading = document.createElement('h5');
+        //let heading = document.createElement('h5');
+        let previewHeading = document.createElement('p');
         //let paragraph = document.createElement('p');
         let buttonWrap = document.createElement('div');
         let buttonDel = document.createElement('button');
@@ -99,34 +100,37 @@ const renderList = () => {
 
         iconDel.dataset.taskId = index;
         iconDel.addEventListener('click', deleteTask);
-        iconDel.classList.add('fa-solid','fa-trash');
+        iconDel.classList.add('fa-solid','fa-trash','p-2');
 
 
         
             
         if (!todo.done) {
-            icon.classList.add('fa-regular','fa-circle');
+            icon.classList.add('fa-regular','fa-circle','icon-check','p-2');
             iconDel.classList.add('d-none');
         } else {
-            icon.classList.add('fa-solid','fa-circle-check');
+            icon.classList.add('fa-solid','fa-circle-check','icon-checked','p-2');
             main.style.textDecoration = "line-through";
-            iconDel.classList.add('d-block');
+            iconDel.classList.add('d-block','icon-checked','p-2');
         }
 
 
-        heading.innerText = todo.name;
-        heading.classList.add('m-0')
+        previewHeading.innerText = todo.name;
+        previewHeading.classList.add('m-0')
+        //heading.innerText = todo.name;
+        //heading.classList.add('m-0')
+
         //paragraph.innerText = todo.desc;
 
-        main.classList.add('p-2','flex-override');
-        main.appendChild(heading);
+        main.classList.add('flex-override','p-2');
+        //main.appendChild(heading);
+        main.appendChild(previewHeading);
         //main.appendChild(paragraph);
 
-        buttonWrap.classList.add('buttons-wrapper','p-2');
+        buttonWrap.classList.add('buttons-wrapper');
 
         buttonWrap.appendChild(icon);
 
-        deleteWrapp.classList.add('ml-auto','p-2');
         
         deleteWrapp.appendChild(iconDel);
     
@@ -156,6 +160,7 @@ const deleteTask = (event) => {
     //todoList.splice(event.target.dataset.taskId,1);
    // localStorage.setItem('todoList', JSON.stringify(todoList)); // -> do włączenia usuwanie, wyłaczone do testów
     //document.querySelector(`[data-task-id="${event.target.dataset.taskId}"]`).remove();
+    collapseDelete();
 }
 
 const getTodoList = () => {
@@ -167,3 +172,6 @@ const getTodoList = () => {
     }
 }
 
+const collapseDelete = (event) => {
+    let li = document.getElementsByTagName('li');
+}

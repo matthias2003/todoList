@@ -1,6 +1,23 @@
+:root {
+    --grey: #5d6473;
+    --blue: #076aff;
+    --iconsChecked: #cbd8fd;
+}
+
+
 body {
     background-color: #f9faff ;
     font-family: 'lato', 'sans-serif';
+    font-size: 1.2rem;
+}
+
+@media only screen and (max-width: 400px) {
+    body {
+        font-size: 1.05rem;
+    }
+    i {
+        font-size: 1rem;
+    }
 }
 
 .list-wrapper {
@@ -23,6 +40,7 @@ textarea {
 
 .underline-div {
     width: 25vw;
+    max-width: 250px;
     height: 2px;
     background-color: #AEBDCA;
     margin: auto;
@@ -42,7 +60,15 @@ textarea {
 }
 
 i {
-    font-size: 30px;
+    font-size: 1.6rem;
+}
+
+.icon-check {
+    color: #076aff;
+}
+
+.icon-checked {
+    color:var(--iconsChecked);
 }
 
 h1,h5 {
@@ -51,4 +77,8 @@ h1,h5 {
 
 .flex-override {
     flex: auto;
+}
+
+p {
+    color: var(--grey);
 }
