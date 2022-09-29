@@ -1,5 +1,10 @@
+body {
+    background-color: #f9faff ;
+    font-family: 'lato', 'sans-serif';
+}
+
 .list-wrapper {
-    margin-top:50px;
+    margin-top:25px;
 }
 
 .input-danger {
@@ -24,14 +29,26 @@ textarea {
 }
 
 .buttons-wrapper {
-    display: flex;
-    gap:5px;
+    margin-right: 10px;
 }
 
-.delete-icon {
-    color: #7895B2;
-}
 .btn-color {
-   background-color:  #E8DFCA;
    border: none;
+}
+
+.li-custom {
+    margin-top: 10px;
+    border-radius: 15px !important;
+}
+
+i {
+    font-size: 30px;
+}
+
+h1,h5 {
+    font-weight: 700;
+}
+
+.flex-override {
+    flex: auto;
 }
