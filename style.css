@@ -1,7 +1,23 @@
+:root {
+    --grey: #5d6473;
+    --blue: #076aff;
+    --iconsChecked: #cbd8fd;
+    --headlineGrey: #9599bb;
+    --bckgColor: #AEBDCA;
+    --iconsTrash:#dde0e9;
+}
+
 body {
     background-color: #f9faff ;
     font-family: 'lato', 'sans-serif';
+    font-size: 1.2rem;
+    scrollbar-gutter: stable both-edges;
 }
+
+.scroll-hider::-webkit-scrollbar {
+    display: none;
+  }
+  
 
 .list-wrapper {
     margin-top:25px;
@@ -23,8 +39,9 @@ textarea {
 
 .underline-div {
     width: 25vw;
+    max-width: 250px;
     height: 2px;
-    background-color: #AEBDCA;
+    background-color: var(--bckgColor);
     margin: auto;
 }
 
@@ -38,11 +55,38 @@ textarea {
 
 .li-custom {
     margin-top: 10px;
-    border-radius: 15px !important;
+    border-radius: 20px !important;
 }
 
 i {
-    font-size: 30px;
+    font-size: 1.6rem;
+}
+
+i:hover {
+    cursor: pointer;
+}
+
+li div:last-child i {
+    color: var(--iconsTrash);
+    font-size: 1.2rem;
+}
+
+.icon-check {
+    color: var(--blue);
+}
+
+.icon-checked {
+    color:var(--iconsChecked);
+}
+
+.icon-add {
+    color: var(--blue);
+    font-size: 3.5rem;
+}
+
+.icon-add-overlay {
+    bottom: 5%;
+    left: 80%;
 }
 
 h1,h5 {
@@ -51,4 +95,74 @@ h1,h5 {
 
 .flex-override {
     flex: auto;
+}
+
+p {
+    color: var(--grey);
+}
+
+li:first-child {
+    margin-top: 0px !important;
+}
+
+.small-headlines {
+    margin-bottom: 0px;
+    font-size: 1rem;
+    color: var(--headlineGrey);
+}
+
+.card {
+    border: none;
+    border-radius: 20px;
+}
+
+.card:first-child {
+    margin-left: 20px;
+}
+
+.card:not(:last-child),.card:not(:first-child) { 
+    margin:  10px;
+}
+
+.card:last-child {
+    margin-right: 20px;
+}
+
+.bar-override {
+    height: 8px;
+}
+
+.offcanvas-form {
+   width: 50vw !important ;
+}
+
+.form-design {
+    width: 50%;
+    border: none;
+    text-align: center;
+}
+.form-design:hover {
+    border: none;
+}
+
+.form-design::placeholder {
+    text-align: center;
+}
+
+
+@media only screen and (max-width: 400px) {
+    body {
+        font-size: 1.05rem;
+    }
+
+    .small-headlines {
+        font-size: 0.8rem;
+    }
+
+    .offcanvas-form {
+        width: 100vw !important;
+    }
+    .form-design{
+        width: 100%;
+    }
 }
