@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let todoDescError = document.getElementById('todoDescError');
     getTodoList();
 
+
     todoForm.addEventListener('submit', (event)=>{
         event.preventDefault();
         let todoName = event.target.elements[0];
@@ -21,12 +22,12 @@ document.addEventListener('DOMContentLoaded', () => {
             todoNameError.innerText = ''; 
         }
 
-        if (todoDesc.value.length > 20) {
+        if (todoDesc.value.length > 5) {
             todoDesc.classList.remove('input-danger');
             todoDescError.innerText = '';
         }
 
-        if (todoName.value.length > 2 &&  todoDesc.value.length > 20) {
+        if (todoName.value.length > 2 &&  todoDesc.value.length > 5) {
             let newTodo = {
                 name: todoName.value,
                 desc: todoDesc.value,
@@ -57,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 todoNameError.innerText = "Nazwa jest za krótka!"
             }
             
-            if (todoDesc.value.length < 20) {
+            if (todoDesc.value.length < 5) {
                 todoDesc.classList.add('input-danger');
                 todoDescError.innerText = "Opis jest za krótki!"
             }
@@ -157,9 +158,9 @@ const changeTaskStatus = (event) => {
 }
 
 const deleteTask = (event) => {
-    //todoList.splice(event.target.dataset.taskId,1);
-   // localStorage.setItem('todoList', JSON.stringify(todoList)); // -> do włączenia usuwanie, wyłaczone do testów
-    //document.querySelector(`[data-task-id="${event.target.dataset.taskId}"]`).remove();
+    todoList.splice(event.target.dataset.taskId,1);
+    localStorage.setItem('todoList', JSON.stringify(todoList)); // -> do włączenia usuwanie, wyłaczone do testów
+    document.querySelector(`[data-task-id="${event.target.dataset.taskId}"]`).remove();
     collapseDelete();
 }
 

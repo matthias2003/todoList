@@ -4,12 +4,14 @@
     --iconsChecked: #cbd8fd;
     --headlineGrey: #9599bb;
     --bckgColor: #AEBDCA;
+    --iconsTrash:#dde0e9;
 }
 
 body {
     background-color: #f9faff ;
     font-family: 'lato', 'sans-serif';
     font-size: 1.2rem;
+    scrollbar-gutter: stable both-edges;
 }
 
 .scroll-hider::-webkit-scrollbar {
@@ -65,8 +67,7 @@ i:hover {
 }
 
 li div:last-child i {
-    color: #8f97b7;
-    color: #dde0e9;
+    color: var(--iconsTrash);
     font-size: 1.2rem;
 }
 
@@ -83,9 +84,9 @@ li div:last-child i {
     font-size: 3.5rem;
 }
 
-.icon-add-wrapp {
-    bottom: 0;
-    right: 0;
+.icon-add-overlay {
+    bottom: 5%;
+    left: 80%;
 }
 
 h1,h5 {
@@ -130,6 +131,25 @@ li:first-child {
 .bar-override {
     height: 8px;
 }
+
+.offcanvas-form {
+   width: 50vw !important ;
+}
+
+.form-design {
+    width: 50%;
+    border: none;
+    text-align: center;
+}
+.form-design:hover {
+    border: none;
+}
+
+.form-design::placeholder {
+    text-align: center;
+}
+
+
 @media only screen and (max-width: 400px) {
     body {
         font-size: 1.05rem;
@@ -137,5 +157,12 @@ li:first-child {
 
     .small-headlines {
         font-size: 0.8rem;
+    }
+
+    .offcanvas-form {
+        width: 100vw !important;
+    }
+    .form-design{
+        width: 100%;
     }
 }
