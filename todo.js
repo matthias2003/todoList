@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let todoDescError = document.getElementById('todoDescError');
     getTodoList();
 
+
     todoForm.addEventListener('submit', (event)=>{
         event.preventDefault();
         let todoName = event.target.elements[0];
@@ -21,12 +22,12 @@ document.addEventListener('DOMContentLoaded', () => {
             todoNameError.innerText = ''; 
         }
 
-        if (todoDesc.value.length > 20) {
+        if (todoDesc.value.length > 5) {
             todoDesc.classList.remove('input-danger');
             todoDescError.innerText = '';
         }
 
-        if (todoName.value.length > 2 &&  todoDesc.value.length > 20) {
+        if (todoName.value.length > 2 &&  todoDesc.value.length > 5) {
             let newTodo = {
                 name: todoName.value,
                 desc: todoDesc.value,
@@ -57,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 todoNameError.innerText = "Nazwa jest za krótka!"
             }
             
-            if (todoDesc.value.length < 20) {
+            if (todoDesc.value.length < 5) {
                 todoDesc.classList.add('input-danger');
                 todoDescError.innerText = "Opis jest za krótki!"
             }
@@ -73,55 +74,71 @@ const renderList = () => {
     let liList = Array.from(ul.getElementsByTagName('li'));
 
     liList.forEach((li) => {
-        let button = li.getElementsByTagName('button')[0];
-        button.removeEventListener('click',changeTaskStatus)
+        let icon = li.getElementsByTagName('i')[0];
+        icon.removeEventListener('click',changeTaskStatus)
     })
     ul.innerHTML ="";
 
     todoList.forEach((todo, index) => { 
         let li = document.createElement('li');
-        li.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-start');
+        li.classList.add('list-group-item', 'd-flex','align-items-start','align-items-center','border-0','li-custom');
 
+        
         let main = document.createElement('div');
-        let heading = document.createElement('h5');
-        let paragraph = document.createElement('p');
-        let button = document.createElement('button');
-        let buttonsWrapper = document.createElement('div');
+        //let heading = document.createElement('h5');
+        let previewHeading = document.createElement('p');
+        //let paragraph = document.createElement('p');
+        let buttonWrap = document.createElement('div');
         let buttonDel = document.createElement('button');
+        let icon = document.createElement('i');
+        let iconDel = document.createElement('i');
+        let deleteWrapp = document.createElement('div');
 
-        button.addEventListener('click', changeTaskStatus);
-        button.dataset.taskId = index;
+        li.appendChild(deleteWrapp);
 
-        buttonDel.addEventListener('click', deleteTask);
-        buttonDel.dataset.taskId = index; 
-        buttonDel.classList.add('btn','btn-success','btn-sm','btn-color');
-        let icon  = document.createElement('i');
-        icon.classList.add('fa-solid','fa-trash','delete-icon');
-        buttonDel.appendChild(icon);
+        icon.addEventListener('click', changeTaskStatus);
+        icon.dataset.taskId = index;
+
+        iconDel.dataset.taskId = index;
+        iconDel.addEventListener('click', deleteTask);
+        iconDel.classList.add('fa-solid','fa-trash','p-2');
+
+
+        
             
- 
         if (!todo.done) {
-           button.innerText = "Finish";
-           button.classList.add('btn','btn-success','btn-sm');
+            icon.classList.add('fa-regular','fa-circle','icon-check','p-2');
+            iconDel.classList.add('d-none');
         } else {
-            button.innerText = "Revert";
-            button.classList.add('btn','btn-danger','btn-sm')
+            icon.classList.add('fa-solid','fa-circle-check','icon-checked','p-2');
             main.style.textDecoration = "line-through";
-            li.style.backgroundColor = "#E8E8E8"; // -> do poprawaki, kolory zmieniń, na razie tylko zamysł 
+            iconDel.classList.add('d-block','icon-checked','p-2');
         }
 
-        heading.innerText = todo.name;
-        paragraph.innerText = todo.desc;
 
-        main.appendChild(heading);
-        main.appendChild(paragraph);
+        previewHeading.innerText = todo.name;
+        previewHeading.classList.add('m-0')
+        //heading.innerText = todo.name;
+        //heading.classList.add('m-0')
 
-        buttonsWrapper.classList.add('buttons-wrapper');
-        buttonsWrapper.appendChild(button);
-        buttonsWrapper.appendChild(buttonDel);
+        //paragraph.innerText = todo.desc;
 
+        main.classList.add('flex-override','p-2');
+        //main.appendChild(heading);
+        main.appendChild(previewHeading);
+        //main.appendChild(paragraph);
+
+        buttonWrap.classList.add('buttons-wrapper');
+
+        buttonWrap.appendChild(icon);
+
+        
+        deleteWrapp.appendChild(iconDel);
+    
+        li.appendChild(buttonWrap)
         li.appendChild(main);
-        li.appendChild(buttonsWrapper)
+        li.appendChild(deleteWrapp);
+
         li.dataset.taskId = index;
 
         ul.appendChild(li);
@@ -141,9 +158,10 @@ const changeTaskStatus = (event) => {
 }
 
 const deleteTask = (event) => {
-    //todoList.splice(event.target.dataset.taskId,1);
-   // localStorage.setItem('todoList', JSON.stringify(todoList)); // -> do włączenia usuwanie, wyłaczone do testów
-    //document.querySelector(`[data-task-id="${event.target.dataset.taskId}"]`).remove();
+    todoList.splice(event.target.dataset.taskId,1);
+    localStorage.setItem('todoList', JSON.stringify(todoList)); // -> do włączenia usuwanie, wyłaczone do testów
+    document.querySelector(`[data-task-id="${event.target.dataset.taskId}"]`).remove();
+    collapseDelete();
 }
 
 const getTodoList = () => {
@@ -155,3 +173,6 @@ const getTodoList = () => {
     }
 }
 
+const collapseDelete = (event) => {
+    let li = document.getElementsByTagName('li');
+}
