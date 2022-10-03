@@ -22,14 +22,13 @@ body {
 .list-wrapper {
     margin-top:25px;
 }
-
+/*
 .input-danger {
     border: 1px solid red;
     color:red;
-}
+}*/
 
 .input-info-danger {
-    color: red;
     font-size: 12px;
 }
 
@@ -47,11 +46,15 @@ textarea {
 
 .buttons-wrapper {
     margin-right: 10px;
+    color: white;
 }
 
 .btn-color {
-   border: none;
+    background-color: var(--blue);
+    border-radius: 20px;
+    padding: 10px;  
 }
+
 
 .li-custom {
     margin-top: 10px;
@@ -66,9 +69,13 @@ i:hover {
     cursor: pointer;
 }
 
-li div:last-child i {
+.icon-trash {
     color: var(--iconsTrash);
     font-size: 1.2rem;
+}
+
+.icon-size {
+    font-size: 1.4rem;
 }
 
 .icon-check {
@@ -141,16 +148,26 @@ li:first-child {
     border: none;
     text-align: center;
 }
+
 .form-design:hover {
     border: none;
 }
 
 .form-design::placeholder {
     text-align: center;
+    font-size: 1.2rem;
 }
 
+.form-align {
+    height: 65%;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-content: flex-end;
+    justify-content: space-between;
+}
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 767px) {
     body {
         font-size: 1.05rem;
     }
