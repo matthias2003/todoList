@@ -18,12 +18,12 @@ document.addEventListener('DOMContentLoaded', () => {
         let todoDesc = event.target.elements[1];
 
         if (todoName.value.length > 2) {
-            todoName.classList.remove('input-danger'); 
+           // todoName.classList.remove('input-danger'); 
             todoNameError.innerText = ''; 
         }
 
         if (todoDesc.value.length > 5) {
-            todoDesc.classList.remove('input-danger');
+           // todoDesc.classList.remove('input-danger');
             todoDescError.innerText = '';
         }
 
@@ -54,12 +54,12 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
 
             if (todoName.value.length < 3) {
-                todoName.classList.add('input-danger');
+                //todoName.classList.add('input-danger');
                 todoNameError.innerText = "Nazwa jest za krótka!"
             }
             
             if (todoDesc.value.length < 5) {
-                todoDesc.classList.add('input-danger');
+               // todoDesc.classList.add('input-danger');
                 todoDescError.innerText = "Opis jest za krótki!"
             }
             
@@ -101,7 +101,7 @@ const renderList = () => {
 
         iconDel.dataset.taskId = index;
         iconDel.addEventListener('click', deleteTask);
-        iconDel.classList.add('fa-solid','fa-trash','p-2');
+        iconDel.classList.add('fa-solid','fa-trash','icon-trash');
 
 
         
