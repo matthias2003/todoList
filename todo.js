@@ -7,9 +7,13 @@ let todoList;
 document.addEventListener('DOMContentLoaded', () => {
     ul = document.getElementById('todoList');
     todoForm = document.getElementById('todoForm');
+
+    let todoDate = document.getElementById('todoDate');
+    let todoColor = document.getElementById('todoColor');
     let todoNameError = document.getElementById('todoNameError');
     let todoDescError = document.getElementById('todoDescError');
     getTodoList();
+
 
 
     todoForm.addEventListener('submit', (event)=>{

@@ -144,7 +144,6 @@ li:first-child {
 }
 
 .form-design {
-    width: 50%;
     border: none;
     text-align: center;
 }
@@ -178,8 +177,5 @@ li:first-child {
 
     .offcanvas-form {
         width: 100vw !important;
-    }
-    .form-design{
-        width: 100%;
     }
 }

@@ -84,11 +84,10 @@
       </div>
       <div class="offcanvas-body d-flex align-items-end">
         <form id="todoForm" class="form-align">
-          <!-- Tutaj trzeba dodać klasę i stylować po klasie jak normalny człowiek!-->
           <div class="input-wrapper">
             <div class="form-group mt-3 mb-3">
               <input type="text" class="form-control form-design shadow-none" id="todoName" placeholder="Add task"
-                name="todoName">
+                name="todoName"  autocomplete="off">
               <small class="input-info-danger form-text text-muted text-center d-block" id="todoNameError"></small>
             </div>
             <div class="form-group mt-2 mb-3 ">
@@ -98,45 +97,26 @@
             </div>
           </div>
           <div class="d-flex justify-content-evenly">
-            <button class="btn btn-primary btn-color"><i class="fa-regular fa-calendar icon-size"></i>Today</button>
-            <button class="btn btn-primary btn-color">Kol</button>
-            <button class="btn btn-primary btn-color" type="submit">New task</button>
-
+            <button class="btn btn-primary btn-color" type="button" id="todoDate"><i class="fa-regular fa-calendar icon-size"></i><span style="margin-left:10px;">Today</span></button>
+            <!--   <button class="btn btn-primary btn-color" type="button" id="todoColor" style="background-color:white; border-radius: 50%;display: block;"><i class="fa-solid fa-droplet" style="color:#076aff;"></i></button>
+           --> <span class="fa-stack fa-2x" style="font-size: 1.5rem;">
+              <i class="fa-regular fa-circle fa-stack-2x"></i>
+              <i class="fa-solid fa-circle fa-stack-1x" style="size: 0.8rem;color: #076aff;"></i> <!-- do poprawy-->
+            </span>
+          
+            <button class="btn btn-primary btn-color" type="submit">New task</button>           
           </div>
-
-
         </form>
 
+        
       </div>
     </div>
-
-
-    <!--  <div class="col-md-4">
-        odkomentować później żeby można było dodawać rzeczy gdzieś
-        <form id="todoForm">
-          <div class="form-floating mt-3 mb-3">
-            <input type="text" class="form-control" id="todoName" placeholder="Dodaj zadanie" name="todoName">
-            <label for="shoppingItem">Dodaj zadanie</label>
-            <span class="input-info-danger" id="todoNameError"></span>
-          </div>
-          <div class="form-floating mt-12 mb-3 ">
-            <textarea class="form-control" id="todoDesc" placeholder="Opis" name="todoDesc"
-              style="height: 200px"></textarea>
-            <label for="shoppingItem">Opis</label>
-            <span class="input-info-danger" id="todoDescError"></span>
-          </div>
-          <button class="btn btn-success mb-3 d-block mt-2" type="submit">DODAJ</button>
-        </form>
-       
-      </div> -->
-
   </div>
-
+  
   </div>
 
 
-
-
+ 
 
   <script src="https://kit.fontawesome.com/d473fb0421.js" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
