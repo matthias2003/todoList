@@ -99,7 +99,7 @@ const renderList = () => {
         let icon = document.createElement('i');
         let iconDel = document.createElement('i');
         let deleteWrapp = document.createElement('div');
-        let arrowDown = document.createElement('img');
+        let arrowDown = document.createElement('i');
         
 
         icon.addEventListener('click', changeTaskStatus);
@@ -110,10 +110,7 @@ const renderList = () => {
         iconDel.addEventListener('click', deleteTask);
         iconDel.classList.add('fa-solid','fa-trash','icon-trash');
 
-
-        
-        arrowDown.setAttribute('src', 'grafika/downArrow.png')
-
+        arrowDown.classList.add('fa-solid','fa-angle-down')
 
         if (!todo.done) {
             icon.classList.add('fa-regular','fa-circle','icon-check','p-2');
@@ -145,8 +142,8 @@ const renderList = () => {
         buttonWrap.appendChild(icon);
 
         
-        deleteWrapp.appendChild(iconDel);
-        //deleteWrapp.appendChild(arrowDown); -> trzeba jakiś append ładny zrobić tutaj
+        //deleteWrapp.appendChild(iconDel);
+        deleteWrapp.appendChild(arrowDown); 
 
         li.appendChild(buttonWrap)
         li.appendChild(main);
