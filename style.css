@@ -5,6 +5,8 @@
     --headlineGrey: #9599bb;
     --bckgColor: #AEBDCA;
     --iconsTrash:#dde0e9;
+    --neonPink : #FF10F0;
+    --emeraldGreen: #005C46;
 }
 
 body {
@@ -76,14 +78,6 @@ i:hover {
 
 .icon-size {
     font-size: 1.4rem;
-}
-
-.icon-check {
-    color: var(--blue);
-}
-
-.icon-checked {
-    color:var(--iconsChecked);
 }
 
 .icon-add {
@@ -166,6 +160,16 @@ li:first-child {
     justify-content: space-between;
 }
 
+.color-button { 
+    display: flex;
+    width: 3rem;
+    background-image: url('grafika/buttonBlue.png');
+    background-position: center;
+    background-size: cover;
+    border-radius: 50%;
+    border: none;
+}
+
 @media only screen and (max-width: 767px) {
     body {
         font-size: 1.05rem;
@@ -177,5 +181,10 @@ li:first-child {
 
     .offcanvas-form {
         width: 100vw !important;
+    }
+
+    .color-box {
+        width: 8vw;
+        height: 8vw;
     }
 }
