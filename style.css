@@ -1,19 +1,24 @@
 :root {
+    --bckgColor:#f9faff;
     --grey: #5d6473;
     --blue: #076aff;
     --iconsChecked: #cbd8fd;
     --headlineGrey: #9599bb;
-    --bckgColor: #AEBDCA;
+    --underlineDiv: #AEBDCA;
     --iconsTrash:#dde0e9;
     --neonPink : #FF10F0;
     --emeraldGreen: #005C46;
 }
 
+
+html {
+    scrollbar-gutter: stable;
+}
+
 body {
-    background-color: #f9faff ;
+    background-color:var(--bckgColor);
     font-family: 'lato', 'sans-serif';
     font-size: 1.2rem;
-    scrollbar-gutter: stable both-edges;
 }
 
 .scroll-hider::-webkit-scrollbar {
@@ -42,7 +47,7 @@ textarea {
     width: 25vw;
     max-width: 250px;
     height: 2px;
-    background-color: var(--bckgColor);
+    background-color: var(--underlineDiv);
     margin: auto;
 }
 
@@ -83,6 +88,10 @@ i:hover {
 .icon-add {
     color: var(--blue);
     font-size: 3.5rem;
+}
+
+.icon-arrow {
+    color: var(--grey);
 }
 
 .icon-add-overlay {
@@ -152,7 +161,7 @@ li:first-child {
 }
 
 .form-align {
-    height: 65%;
+    height: 60%;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
@@ -163,12 +172,39 @@ li:first-child {
 .color-button { 
     display: flex;
     width: 3rem;
+    height: 47px;
     background-image: url('grafika/buttonBlue.png');
     background-position: center;
     background-size: cover;
     border-radius: 50%;
     border: none;
 }
+
+.color-button:first-child {
+    background-image: url('grafika/buttonPink.png');
+}
+
+.color-button:last-child {
+    background-image: url('grafika/buttonGreen.png')
+}
+.color-list {
+    display: inline-block;
+    margin: 10px;
+}
+
+.color-wrapper {
+    display: none;
+    justify-content: center;
+    background-color: var(--bckgColor) ;
+    border-radius: 20px;
+    /*width: 25%;*/
+    margin: 10px auto;
+}
+
+.show {
+    display: flex;
+}
+
 
 @media only screen and (max-width: 767px) {
     body {
