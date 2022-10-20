@@ -4,10 +4,10 @@
     --blue: #076aff;
     --iconsChecked: #cbd8fd;
     --headlineGrey: #9599bb;
-    --underlineDiv: #AEBDCA;
+    --underlineDiv: #aebdca;
     --iconsTrash:#dde0e9;
-    --neonPink : #FF10F0;
-    --emeraldGreen: #005C46;
+    --neonPink : #ff10f0;
+    --emeraldGreen: #005c46;
 }
 
 
@@ -197,7 +197,11 @@ li:first-child {
     justify-content: center;
     background-color: var(--bckgColor) ;
     border-radius: 20px;
+<<<<<<< HEAD
     width: 35%;
+=======
+    width: 40%;
+>>>>>>> test
     margin: 10px auto;
 }
 
@@ -223,8 +227,15 @@ li:first-child {
         width: 8vw;
         height: 8vw;
     }
+<<<<<<< HEAD
 
     .color-wrapper {
         width: 75%;
     }
+=======
+    .color-wrapper {
+        width: 75%;
+    }
+
+>>>>>>> test
 }
