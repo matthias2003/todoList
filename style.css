@@ -197,7 +197,7 @@ li:first-child {
     justify-content: center;
     background-color: var(--bckgColor) ;
     border-radius: 20px;
-    /*width: 25%;*/
+    width: 35%;
     margin: 10px auto;
 }
 
@@ -222,5 +222,9 @@ li:first-child {
     .color-box {
         width: 8vw;
         height: 8vw;
+    }
+
+    .color-wrapper {
+        width: 75%;
     }
 }
