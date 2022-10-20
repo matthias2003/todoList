@@ -197,11 +197,7 @@ li:first-child {
     justify-content: center;
     background-color: var(--bckgColor) ;
     border-radius: 20px;
-<<<<<<< HEAD
-    width: 35%;
-=======
     width: 40%;
->>>>>>> test
     margin: 10px auto;
 }
 
@@ -227,15 +223,7 @@ li:first-child {
         width: 8vw;
         height: 8vw;
     }
-<<<<<<< HEAD
-
     .color-wrapper {
         width: 75%;
     }
-=======
-    .color-wrapper {
-        width: 75%;
-    }
-
->>>>>>> test
-}
+}  
