@@ -1,4 +1,7 @@
-"use strict"
+import rgbHex from '/node_modules/rgb-hex/index.js';
+
+"use strict";
+
 
 let ul;
 let todoForm;
@@ -14,6 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     todoColor.addEventListener('click',changeButtonColor);
 
+
+    
     getTodoList();
 
 
@@ -22,11 +27,11 @@ document.addEventListener('DOMContentLoaded', () => {
         let todoName = event.target.elements[0];
         //let todoColor = event.target.elements[2];
 
-
         if (todoName.value.length > 2) {
            // todoName.classList.remove('input-danger'); 
             todoNameError.innerText = ''; 
         }
+
 
         if (todoName.value.length > 2) {
             let newTodo = {
@@ -41,6 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
             
+
             todoList.push(newTodo);
             
             localStorage.setItem('todoList', JSON.stringify(todoList));
@@ -50,7 +56,8 @@ document.addEventListener('DOMContentLoaded', () => {
             todoColor.value = "#076aff";
          
             renderList();
-           
+
+            
         } else {
 
             if (todoName.value.length < 3) {
@@ -65,15 +72,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 const renderList = () => {
+    
     let liList = Array.from(ul.getElementsByTagName('li'));
 
-
-  
     liList.forEach((li) => { 
         let icon = li.getElementsByTagName('i')[0];
-        console.log(icon.getAttribute('style')); // to przyda się na później!
-        //icon.removeEventListener('click',changeTaskStatus)
+        icon.removeEventListener('click',changeTaskStatus)
     })
+
+
     ul.innerHTML ="";
   
     todoList.forEach((todo, index) => { 
@@ -108,17 +115,27 @@ const renderList = () => {
             icon.classList.add('fa-solid','fa-circle-check','p-2');
             main.style.textDecoration = "line-through";
             iconDel.classList.add('d-block','icon-checked','p-2');
-            icon.style.color = todo.color+"4d"; // do poprawy kolor ten
+            icon.style.color = todo.color+"4d";
         }
 
+        /* STREFA BUDOWY */
 
-        const collapseIconAttributes = {
-            'data-bs-toggle':'collapse',
-            'href':'#collapseTodoItem',
-            'role':'button',
-            'aria-expanded':'false',
-            'aria-controls':'collapseTodoItem'
-        }
+                let taskBody = document.querySelectorAll('.card-body');
+
+                taskBody.forEach( el => {
+                    let taskNumber = el.firstElementChild;
+                    let bcqkColor = el.lastElementChild.firstElementChild;
+
+                    if ( todo.color == `#${rgbHex(bcqkColor.style.backgroundColor)}`) {
+                        taskNumber.innerText = '100';
+                        bcqkColor.style.width = "100%";
+                    }  
+                });
+;
+        /*             */
+ 
+
+
 
         previewHeading.innerText = todo.name;
         previewHeading.classList.add('m-0')
@@ -146,6 +163,22 @@ const renderList = () => {
 
         //canvas.hide(); -> pokombinować z tym
     })
+
+
+    // let liList = Array.from(ul.getElementsByTagName('li'));
+
+    // liList.forEach((li) => { 
+    //     let icon = li.getElementsByTagName('i')[0];
+    //     console.log(icon.getAttribute('style'));
+        
+    //     console.log(icon.style)
+    //     //console.log(icon)
+    //     // to przyda się n później!
+    //     //icon.removeEventListener('click',changeTaskStatus)
+
+    // })
+
+
 }
 
 const changeTaskStatus = (event) => {
@@ -185,6 +218,7 @@ const changeButtonColor = () => {
             todoColor.style.backgroundImage = `url('grafika/button${event.target.id}.png')`;
         });
     });
+
 }
 /*
 const collapseDelete = (event) => {
