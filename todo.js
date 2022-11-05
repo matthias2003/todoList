@@ -14,22 +14,15 @@ document.addEventListener('DOMContentLoaded', () => {
     todoForm = document.getElementById('todoForm');
     let todoColor = document.getElementById('todoColor');
     let todoNameError = document.getElementById('todoNameError');
-    
 
     todoColor.addEventListener('click',changeButtonColor);
-
-
-    
     getTodoList();
-
 
     todoForm.addEventListener('submit', (event)=>{
         event.preventDefault();
         let todoName = event.target.elements[0];
-        //let todoColor = event.target.elements[2];
 
         if (todoName.value.length > 2) {
-           // todoName.classList.remove('input-danger'); 
             todoNameError.innerText = ''; 
         }
 
@@ -47,41 +40,28 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
             
-
             todoList.push(newTodo);
-            
             localStorage.setItem('todoList', JSON.stringify(todoList));
-            
-            
             todoName.value = "";
-         
             renderList();
 
         } else {
-
             if (todoName.value.length < 3) {
-                //todoName.classList.add('input-danger');
                 todoNameError.innerText = "Nazwa jest za krótka!"
             }
         }
-       
      })
-     
 });
 
 
 const renderList = () => {
-    
     let liList = Array.from(ul.getElementsByTagName('li'));
-
     liList.forEach((li) => { 
         let icon = li.getElementsByTagName('i')[0];
-        //icon.removeEventListener('click',changeTaskStatus);
     })
 
 
     ul.innerHTML ="";
-  
     todoList.forEach((todo, index) => { 
         let li = document.createElement('li');
         li.classList.add('list-group-item', 'd-flex','align-items-start','align-items-center','border-0','li-custom');
@@ -91,21 +71,16 @@ const renderList = () => {
         let buttonWrap = document.createElement('div');
         let icon = document.createElement('i');
         
-        
-        
         let deleteWrapp = document.createElement('div');
         let iconDel = document.createElement('i');
-
 
         icon.addEventListener('click', changeTaskStatus);
         icon.style.color = todo.color;
         icon.dataset.taskId = index;
 
         iconDel.dataset.taskId = index;
-
         iconDel.addEventListener('click', deleteTask);
         iconDel.classList.add('fa-solid','fa-trash','icon-trash');
-
 
         if (!todo.done) {
             icon.classList.add('fa-regular','fa-circle','icon-check','p-2');
@@ -117,31 +92,7 @@ const renderList = () => {
             iconDel.classList.add('d-block','icon-checked','p-2');
             icon.style.color = todo.color+"4d";
         }
-
-        /* STREFA BUDOWY */
-
-//                 let taskBody = document.querySelectorAll('.card-body');
-//                 let counter = 0;
-
-//                 taskBody.forEach( el => {
-//                     let taskNumber = el.firstElementChild;
-//                     let bcqkColor = el.lastElementChild.firstElementChild;
-//                     if ( todo.color == `#${rgbHex(bcqkColor.style.backgroundColor)}`) {
-//                         //taskNumber.innerText = '100';
-//                         const reg = /\d+/g;
-//                         console.log(taskNumber);
-//                         counter+=1;
-//                         taskNumber.innerText = `${Number(reg.exec(taskNumber.innerText)[0]) + counter} tasks`;
-//                         bcqkColor.style.width = "100%";
-//                     } 
-                    
-//                 });
-// ;
-        /*             */
- 
-
-
-
+       
         previewHeading.innerText = todo.name;
         previewHeading.classList.add('m-0');
 
@@ -149,28 +100,20 @@ const renderList = () => {
         main.appendChild(previewHeading);
 
         buttonWrap.classList.add('buttons-wrapper');
-
         buttonWrap.appendChild(icon);
-
 
         deleteWrapp.appendChild(iconDel);
 
         li.appendChild(buttonWrap);
         li.appendChild(main);
         li.appendChild(deleteWrapp);
-    
         li.dataset.taskId = index;
-
 
         ul.appendChild(li);
         //canvas.classList.toggle('show');
-    
-
         //canvas.hide(); -> pokombinować z tym
     })
-
     taskCouterAndProgressBar();
-
 }
 
 const changeTaskStatus = (event) => {
