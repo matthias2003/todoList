@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     todoForm = document.getElementById('todoForm');
     let todoColor = document.getElementById('todoColor');
     let todoNameError = document.getElementById('todoNameError');
+    
 
     todoColor.addEventListener('click',changeButtonColor);
 
@@ -53,11 +54,9 @@ document.addEventListener('DOMContentLoaded', () => {
             
             
             todoName.value = "";
-            todoColor.value = "#076aff";
          
             renderList();
 
-            
         } else {
 
             if (todoName.value.length < 3) {
@@ -77,7 +76,7 @@ const renderList = () => {
 
     liList.forEach((li) => { 
         let icon = li.getElementsByTagName('i')[0];
-        icon.removeEventListener('click',changeTaskStatus)
+        //icon.removeEventListener('click',changeTaskStatus);
     })
 
 
@@ -103,6 +102,7 @@ const renderList = () => {
         icon.dataset.taskId = index;
 
         iconDel.dataset.taskId = index;
+
         iconDel.addEventListener('click', deleteTask);
         iconDel.classList.add('fa-solid','fa-trash','icon-trash');
 
@@ -120,25 +120,30 @@ const renderList = () => {
 
         /* STREFA BUDOWY */
 
-                let taskBody = document.querySelectorAll('.card-body');
+//                 let taskBody = document.querySelectorAll('.card-body');
+//                 let counter = 0;
 
-                taskBody.forEach( el => {
-                    let taskNumber = el.firstElementChild;
-                    let bcqkColor = el.lastElementChild.firstElementChild;
-
-                    if ( todo.color == `#${rgbHex(bcqkColor.style.backgroundColor)}`) {
-                        taskNumber.innerText = '100';
-                        bcqkColor.style.width = "100%";
-                    }  
-                });
-;
+//                 taskBody.forEach( el => {
+//                     let taskNumber = el.firstElementChild;
+//                     let bcqkColor = el.lastElementChild.firstElementChild;
+//                     if ( todo.color == `#${rgbHex(bcqkColor.style.backgroundColor)}`) {
+//                         //taskNumber.innerText = '100';
+//                         const reg = /\d+/g;
+//                         console.log(taskNumber);
+//                         counter+=1;
+//                         taskNumber.innerText = `${Number(reg.exec(taskNumber.innerText)[0]) + counter} tasks`;
+//                         bcqkColor.style.width = "100%";
+//                     } 
+                    
+//                 });
+// ;
         /*             */
  
 
 
 
         previewHeading.innerText = todo.name;
-        previewHeading.classList.add('m-0')
+        previewHeading.classList.add('m-0');
 
         main.classList.add('flex-override','p-2');
         main.appendChild(previewHeading);
@@ -150,7 +155,7 @@ const renderList = () => {
 
         deleteWrapp.appendChild(iconDel);
 
-        li.appendChild(buttonWrap)
+        li.appendChild(buttonWrap);
         li.appendChild(main);
         li.appendChild(deleteWrapp);
     
@@ -164,25 +169,13 @@ const renderList = () => {
         //canvas.hide(); -> pokombinować z tym
     })
 
-
-    // let liList = Array.from(ul.getElementsByTagName('li'));
-
-    // liList.forEach((li) => { 
-    //     let icon = li.getElementsByTagName('i')[0];
-    //     console.log(icon.getAttribute('style'));
-        
-    //     console.log(icon.style)
-    //     //console.log(icon)
-    //     // to przyda się n później!
-    //     //icon.removeEventListener('click',changeTaskStatus)
-
-    // })
-
+    taskCouterAndProgressBar();
 
 }
 
 const changeTaskStatus = (event) => {
-    let todo = todoList[event.target.dataset.taskId]
+    let todo = todoList[event.target.dataset.taskId];
+
     if (todo.done === true) {
         todo.done = false;
     } else {
@@ -194,9 +187,13 @@ const changeTaskStatus = (event) => {
 }
 
 const deleteTask = (event) => {
-    todoList.splice(event.target.dataset.taskId,1);
+    console.log(event.target.dataset.taskId)
+    console.log(todoList)
+    todoList.splice(event.target.dataset.taskId,1); // -> ŹLE USUWA Z TODOLIST, jeśli usuwam od góry, ideksy w todoList spadają w dół i nie zgadzają się z taskId
+    console.log(todoList)/
     localStorage.setItem('todoList', JSON.stringify(todoList));
     document.querySelector(`[data-task-id="${event.target.dataset.taskId}"]`).remove();
+    renderList(); // -> rozwiązuje problem usuwania, ale nie wiem czy nie będzie za bardzo obciążać i spowalniać strony
     //collapseDelete();
 }
 
@@ -216,10 +213,34 @@ const changeButtonColor = () => {
         el.addEventListener('click', (event) => {
             todoColor.value =  el.value;
             todoColor.style.backgroundImage = `url('grafika/button${event.target.id}.png')`;
-        });
+        })
     });
 
 }
+
+const taskCouterAndProgressBar = () => { 
+    let taskBody = document.querySelectorAll('.card-body');
+    taskBody.forEach( el => {
+        let taskNumber = el.firstElementChild;
+        let taskbar = el.lastElementChild.firstElementChild;
+        let taskCounter = 0;
+        let barCounter = 0;
+        
+        todoList.forEach( todo => {
+            if ( todo.color == `#${rgbHex(taskbar.style.backgroundColor)}`) {
+                if (todo.done == false) {
+                    taskCounter += 1;
+                } else if ( todo.done == true) {
+                    barCounter += 1;
+                }
+            }      
+        })
+
+        taskbar.style.width = `${(barCounter/(barCounter + taskCounter))*100}%`;
+        taskNumber.innerText = `${taskCounter} tasks`;
+    })
+}
+
 /*
 const collapseDelete = (event) => {
     let li = document.getElementsByTagName('li');
