@@ -6,14 +6,14 @@ import rgbHex from '/node_modules/rgb-hex/index.js';
 let ul;
 let todoForm;
 let todoList;
-let canvas; // do ogarnięcia
 
 document.addEventListener('DOMContentLoaded', () => {
     ul = document.getElementById('todoList');
-    canvas = document.getElementById('staticBackdrop'); // do ogarnięcia
     todoForm = document.getElementById('todoForm');
     let todoColor = document.getElementById('todoColor');
     let todoNameError = document.getElementById('todoNameError');
+    //let canvas = document.getElementById('staticBackdrop');
+    
 
     todoColor.addEventListener('click',changeButtonColor);
     getTodoList();
@@ -21,9 +21,11 @@ document.addEventListener('DOMContentLoaded', () => {
     todoForm.addEventListener('submit', (event)=>{
         event.preventDefault();
         let todoName = event.target.elements[0];
+        
 
         if (todoName.value.length > 2) {
-            todoNameError.innerText = ''; 
+            todoNameError.innerText = '';
+            
         }
 
 
@@ -50,7 +52,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 todoNameError.innerText = "Nazwa jest za krótka!"
             }
         }
+
+        // canvas.classList.toggle('show'); // -> znika skokowo, trzeba ogarnąć animacje jakaś do tego
+        // let offancvasFade = document.getElementsByClassName('offcanvas-backdrop fade')[0];
+        // offancvasFade.classList.toggle('show');
+
+        
      })
+
+     
 });
 
 
@@ -110,9 +120,8 @@ const renderList = () => {
         li.dataset.taskId = index;
 
         ul.appendChild(li);
-        //canvas.classList.toggle('show');
-        //canvas.hide(); -> pokombinować z tym
     })
+
     taskCouterAndProgressBar();
 }
 
@@ -130,15 +139,27 @@ const changeTaskStatus = (event) => {
 }
 
 const deleteTask = (event) => {
-    console.log(event.target.dataset.taskId)
-    console.log(todoList)
-    todoList.splice(event.target.dataset.taskId,1); // -> ŹLE USUWA Z TODOLIST, jeśli usuwam od góry, ideksy w todoList spadają w dół i nie zgadzają się z taskId
-    console.log(todoList)/
+    let listItem = document.querySelector(`[data-task-id="${event.target.dataset.taskId}"]`)
+    // // collapseDelete(listItem);
+
+    todoList.splice(event.target.dataset.taskId,1);
     localStorage.setItem('todoList', JSON.stringify(todoList));
-    document.querySelector(`[data-task-id="${event.target.dataset.taskId}"]`).remove();
-    renderList(); // -> rozwiązuje problem usuwania, ale nie wiem czy nie będzie za bardzo obciążać i spowalniać strony
-    //collapseDelete();
+
+    // listItem.classList.add('collapse-delete');
+    // listItem.classList.add('collapse-delete');
+    // listItem.addEventListener('transitioned',()=> {
+    //     //listItem.remove();
+    // })
+
+
+   
+    listItem.remove();
+    renderList();
 }
+
+// const collapseDelete = (listItem) => {
+    
+// }
 
 const getTodoList = () => {
     if (localStorage.getItem('todoList')) {
@@ -151,6 +172,7 @@ const getTodoList = () => {
 
 const changeButtonColor = () => {
     document.getElementById('colorWrapper').classList.toggle('show');
+    //document.getElementById('buttonsWrapper').classList.toggle('d-none');
     let buttons = document.querySelectorAll('#colorWrapper button');
     buttons.forEach(el => {
         el.addEventListener('click', (event) => {
@@ -179,14 +201,13 @@ const taskCouterAndProgressBar = () => {
             }      
         })
 
-        taskbar.style.width = `${(barCounter/(barCounter + taskCounter))*100}%`;
-        taskNumber.innerText = `${taskCounter} tasks`;
+        if (taskCounter == 0 && barCounter == 0){
+            taskbar.style.width = '0%';
+        } else {
+            taskbar.style.width = `${(barCounter/(barCounter + taskCounter))*100}%`;
+            taskNumber.innerText = `${taskCounter} tasks`;
+        }
     })
 }
 
-/*
-const collapseDelete = (event) => {
-    let li = document.getElementsByTagName('li');
-}
-*/
 

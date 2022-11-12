@@ -11,10 +11,6 @@
 }
 
 
-html {
-    scrollbar-gutter: stable;
-}
-
 body {
     background-color:var(--bckgColor);
     font-family: 'lato', 'sans-serif';
@@ -195,16 +191,14 @@ li:first-child {
 .color-wrapper {
     display: none;
     justify-content: center;
-    background-color: var(--bckgColor) ;
     border-radius: 20px;
-    width: 40%;
-    margin: 10px auto;
+    width: 55%;
+    margin: 0 auto;
 }
 
 .show {
     display: flex;
 }
-
 
 @media only screen and (max-width: 767px) {
     body {
