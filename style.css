@@ -193,13 +193,12 @@ li:first-child {
     justify-content: center;
     border-radius: 20px;
     width: 55%;
-    margin: 10px auto;
+    margin: 0 auto;
 }
 
 .show {
     display: flex;
 }
-
 
 @media only screen and (max-width: 767px) {
     body {

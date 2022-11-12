@@ -139,12 +139,27 @@ const changeTaskStatus = (event) => {
 }
 
 const deleteTask = (event) => {
-    todoList.splice(event.target.dataset.taskId,1); // -> ŹLE USUWA Z TODOLIST, jeśli usuwam od góry, ideksy w todoList spadają w dół i nie zgadzają się z taskId
+    let listItem = document.querySelector(`[data-task-id="${event.target.dataset.taskId}"]`)
+    // // collapseDelete(listItem);
+
+    todoList.splice(event.target.dataset.taskId,1);
     localStorage.setItem('todoList', JSON.stringify(todoList));
-    document.querySelector(`[data-task-id="${event.target.dataset.taskId}"]`).remove();
-    renderList(); // -> rozwiązuje problem usuwania, ale nie wiem czy nie będzie za bardzo obciążać i spowalniać strony
-    //collapseDelete();
+
+    // listItem.classList.add('collapse-delete');
+    // listItem.classList.add('collapse-delete');
+    // listItem.addEventListener('transitioned',()=> {
+    //     //listItem.remove();
+    // })
+
+
+   
+    listItem.remove();
+    renderList();
 }
+
+// const collapseDelete = (listItem) => {
+    
+// }
 
 const getTodoList = () => {
     if (localStorage.getItem('todoList')) {
@@ -157,6 +172,7 @@ const getTodoList = () => {
 
 const changeButtonColor = () => {
     document.getElementById('colorWrapper').classList.toggle('show');
+    //document.getElementById('buttonsWrapper').classList.toggle('d-none');
     let buttons = document.querySelectorAll('#colorWrapper button');
     buttons.forEach(el => {
         el.addEventListener('click', (event) => {
@@ -194,8 +210,4 @@ const taskCouterAndProgressBar = () => {
     })
 }
 
-/*
-const collapseDelete = (event) => {
-    let li = document.getElementsByTagName('li');
-}
-*/
+
