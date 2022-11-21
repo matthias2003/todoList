@@ -171,13 +171,17 @@ const getTodoList = () => {
 }
 
 const changeButtonColor = () => {
-    document.getElementById('colorWrapper').classList.toggle('show');
-    //document.getElementById('buttonsWrapper').classList.toggle('d-none');
-    let buttons = document.querySelectorAll('#colorWrapper button');
-    buttons.forEach(el => {
+    let buttonsWrapper =  document.getElementById('buttonsWrapper')
+    let colorWrapper = document.getElementById('colorWrapper')
+    buttonsWrapper.classList.add('d-none'); 
+    colorWrapper.classList.add('show');
+
+    document.querySelectorAll('#colorWrapper button').forEach(el => {
         el.addEventListener('click', (event) => {
             todoColor.value =  el.value;
             todoColor.style.backgroundImage = `url('grafika/button${event.target.id}.png')`;
+            buttonsWrapper.classList.remove('d-none'); 
+            colorWrapper.classList.remove('show');
         })
     });
 
