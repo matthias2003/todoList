@@ -14,6 +14,19 @@ document.addEventListener('DOMContentLoaded', () => {
     let todoNameError = document.getElementById('todoNameError');
     //let canvas = document.getElementById('staticBackdrop');
     
+    /// strefa budowy
+
+    /*
+    let date = document.getElementById('datePicker');
+    date.addEventListener('focous',()=> {
+        date.show();
+    })
+
+*/
+
+    ///
+
+
 
     todoColor.addEventListener('click',changeButtonColor);
     getTodoList();
