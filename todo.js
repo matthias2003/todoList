@@ -2,7 +2,6 @@ import rgbHex from '/node_modules/rgb-hex/index.js';
 
 "use strict";
 
-
 let ul;
 let todoForm;
 let todoList;
@@ -12,21 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
     todoForm = document.getElementById('todoForm');
     let todoColor = document.getElementById('todoColor');
     let todoNameError = document.getElementById('todoNameError');
-    //let canvas = document.getElementById('staticBackdrop');
-    
-    /// strefa budowy
-
-    /*
-    let date = document.getElementById('datePicker');
-    date.addEventListener('focous',()=> {
-        date.show();
-    })
-
-*/
-
-    ///
-
-
 
     todoColor.addEventListener('click',changeButtonColor);
     getTodoList();
@@ -34,13 +18,11 @@ document.addEventListener('DOMContentLoaded', () => {
     todoForm.addEventListener('submit', (event)=>{
         event.preventDefault();
         let todoName = event.target.elements[0];
-        
 
         if (todoName.value.length > 2) {
             todoNameError.innerText = '';
             
         }
-
 
         if (todoName.value.length > 2) {
             let newTodo = {
@@ -50,7 +32,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             for (let todo of todoList) {
-                if (todo.name === todoName.value) {
+                if (todo.name === todoName.value && todo.color === todoColor.value) {
+                    todoNameError.innerText = 'Task already exist!';
                     return;
                 }
             }
@@ -62,27 +45,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
         } else {
             if (todoName.value.length < 3) {
-                todoNameError.innerText = "Nazwa jest za krótka!"
+                todoNameError.innerText = "Name is to short!"
             }
         }
-
-        // canvas.classList.toggle('show'); // -> znika skokowo, trzeba ogarnąć animacje jakaś do tego
-        // let offancvasFade = document.getElementsByClassName('offcanvas-backdrop fade')[0];
-        // offancvasFade.classList.toggle('show');
-
-        
      })
-
-     
 });
-
 
 const renderList = () => {
     let liList = Array.from(ul.getElementsByTagName('li'));
     liList.forEach((li) => { 
         let icon = li.getElementsByTagName('i')[0];
     })
-
 
     ul.innerHTML ="";
     todoList.forEach((todo, index) => { 
@@ -153,26 +126,11 @@ const changeTaskStatus = (event) => {
 
 const deleteTask = (event) => {
     let listItem = document.querySelector(`[data-task-id="${event.target.dataset.taskId}"]`)
-    // // collapseDelete(listItem);
-
     todoList.splice(event.target.dataset.taskId,1);
     localStorage.setItem('todoList', JSON.stringify(todoList));
-
-    // listItem.classList.add('collapse-delete');
-    // listItem.classList.add('collapse-delete');
-    // listItem.addEventListener('transitioned',()=> {
-    //     //listItem.remove();
-    // })
-
-
-   
     listItem.remove();
     renderList();
 }
-
-// const collapseDelete = (listItem) => {
-    
-// }
 
 const getTodoList = () => {
     if (localStorage.getItem('todoList')) {
