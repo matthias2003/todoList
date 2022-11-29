@@ -10,7 +10,6 @@
     --emeraldGreen: #005c46;
 }
 
-
 body {
     background-color:var(--bckgColor);
     font-family: 'lato', 'sans-serif';
@@ -21,7 +20,6 @@ body {
     display: none;
   }
   
-
 .list-wrapper {
     margin-top:25px;
 }
@@ -54,7 +52,6 @@ textarea {
     width: 65%;
     margin: auto;
 }
-
 
 .li-custom {
     margin-top: 10px;
@@ -90,6 +87,17 @@ i:hover {
 .icon-add-overlay {
     bottom: 5%;
     left: 80%;
+}
+
+.icon-link {
+    font-size: 0.8rem;
+    position:absolute;
+    bottom: 0;
+    background-color: white;
+    color: var(--grey);
+    text-decoration: none;
+    padding: 5px;
+    border-radius: 20px;
 }
 
 h1,h5 {
@@ -165,32 +173,28 @@ li:first-child {
 .color-button { 
     display: flex;
     width: 3rem;
-    height: 47px;
+    height: 2.9rem;
     background-image: url('grafika/buttonBlue.png');
     background-position: center;
     background-size: cover;
     border-radius: 50%;
     border: none;
+    padding: 0 !important;
 }
 
-.color-button:first-child {
+.color-button.pink {
     background-image: url('grafika/buttonPink.png');
 }
 
-.color-button:last-child {
+.color-button.green {
     background-image: url('grafika/buttonGreen.png')
-}
-
-.color-list {
-    display: inline-block;
-    margin: 0 10px;
 }
 
 .color-wrapper {
     display: none;
-    justify-content: center;
+    justify-content: space-between;
     border-radius: 50px;
-    width: calc(15% + 150px);
+    width: calc(9% + 150px);
     margin: 0 auto;
     padding: 5px;
     background-color: var(--blue);
@@ -200,22 +204,11 @@ li:first-child {
     display: flex;
 }
 
-.date-picker {
-    padding: 10px 10px;
-    border-radius: 20px;
-    background-color: var(--blue);
-    color: white;
-    border: none;
-    width: 20%;
-    font-size: 1rem;
-}
-
 .submit-wrapper {
     background-color: var(--blue);
     border-radius: 50px;
     padding: 5px;
 }
-
 
 @media only screen and (max-width: 767px) {
     body {
@@ -234,7 +227,8 @@ li:first-child {
         width: 8vw;
         height: 8vw;
     }
-    .color-wrapper {
-        width: 75%;
+
+    .icon-link {
+        font-size: 0.6rem;
     }
 }  
