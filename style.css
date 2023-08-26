@@ -174,7 +174,7 @@ li:first-child {
     display: flex;
     width: 3rem;
     height: 2.9rem;
-    background-image: url('grafika/buttonBlue.png');
+    background-image: url('src/buttonBlue.png');
     background-position: center;
     background-size: cover;
     border-radius: 50%;
@@ -183,11 +183,11 @@ li:first-child {
 }
 
 .color-button.pink {
-    background-image: url('grafika/buttonPink.png');
+    background-image: url('src/buttonPink.png');
 }
 
 .color-button.green {
-    background-image: url('grafika/buttonGreen.png')
+    background-image: url('src/buttonGreen.png')
 }
 
 .color-wrapper {

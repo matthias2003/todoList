@@ -150,7 +150,7 @@ const changeButtonColor = () => {
     document.querySelectorAll('#colorWrapper button').forEach(el => {
         el.addEventListener('click', (event) => {
             todoColor.value =  el.value;
-            todoColor.style.backgroundImage = `url('grafika/button${event.target.id}.png')`;
+            todoColor.style.backgroundImage = `url('src/button${event.target.id}.png')`;
             buttonsWrapper.classList.remove('d-none'); 
             colorWrapper.classList.remove('show');
         })
