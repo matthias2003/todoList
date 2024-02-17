@@ -1,4 +1,4 @@
-import rgbHex from '/node_modules/rgb-hex/index.js';
+import rgbHex from './rgb-hex/index.js';
 
 "use strict";
 
